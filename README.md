@@ -1,2 +1,2 @@
 # nti_tasks
-![Screenshot](https://github.com/[AhmedRefaatA]/[nti_tasks]/blob/[master]/image.png?raw=true)
+![Screenshot](https://github.com/[AhmedRefaatA]/[nti_tasks]/blob/images/image.png?raw=true)
