@@ -45,6 +45,13 @@ function validPattern($input, $flag){
             
             return $time;
             break;
+
+        
+        case 'int':
+            $input = filter_var($input, FILTER_VALIDATE_INT);
+            
+            return $input;
+            break;
     
             
     }

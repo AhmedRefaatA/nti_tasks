@@ -52,12 +52,13 @@ $op = mysqli_query($connect, $sql);
                 <td><?php echo date("m/d/Y H:i", $data['start_date']);?></td>
                 <td><?php echo date("m/d/Y H:i", $data['end_date']);?></td>
                 <td>
-                    <a href="" class="btn btn-danger">Delete</a >
+                    <a href="delete.php?id= <?php echo $data['id']?>" class="btn btn-danger">Delete</a >
                     <a href="" class="btn btn-primary">Edite</a >
                 </td>
                 </tr>
                 <?php } ?>
             </tbody>
         </table>
+        <a href="<?php echo htmlspecialchars("add_todo.php")?>" class="btn btn-primary">Add New </a >
     </body>
 </html>

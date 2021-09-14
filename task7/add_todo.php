@@ -38,6 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $description = $description["description"];
     $sql = "insert into todos (title,description,start_date,end_date) values ('$title','$description','$start_date','$end_date')";
     $op = mysqli_query($connect,$sql);
+    header("Location: index.php");
   }
  
 
