@@ -9,14 +9,10 @@ require "helper.php";
 
 if($_SERVER["REQUEST_METHOD"] == "GET"){
     $id = validPattern(clean($_GET["id"]), 'int');
-
     $sql = "SELECT * FROM todos WHERE id = $id";
-    
     $op = mysqli_query($connect, $sql);
     $data = mysqli_fetch_assoc($op);
-    echo str_replace('EEST', 'T', date('Y-m-dTH:i', $data['start_date']));
 }
-
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $title = ["title" => filter_var(clean($_POST["title"]), FILTER_SANITIZE_STRING)];
     $description = ["description" => filter_var(clean($_POST["description"]), FILTER_SANITIZE_STRING)];
@@ -34,12 +30,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $validStartDate = validPattern($start_date, "time");
     $validEndDate = validPattern($start_date, "time");
    
-  
     if($checkempty && $validTitle && $validStartDate && $validEndDate){
+      $id = $_POST['id'];
+      //echo $id;
       $title = $title["title"];
       $description = $description["description"];
-      $sql = "UPDATE todos SET title='$title',description='$description',start_date='$start_date',end_date='$end_date' WHERE id='$id'";
+      $sql = "UPDATE todos SET title='$title',description='$description',start_date='$start_date',end_date='$end_date' WHERE id = $id";
       $op = mysqli_query($connect,$sql);
+      //echo $sql;
       header("Location: index.php");
     }
    
@@ -69,7 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>"  enctype ="multipart/form-data">
 
   
-
+  <input type="hidden" name='id' value="<?php echo $data['id']; ?>">
   <div class="form-group">
     <label for="exampleInputTitle">Title</label>
     <input type="text" name="title"  class="form-control" id="exampleInputName" aria-describedby="" placeholder="Enter Title" value="<?php echo $data['title']?>">
