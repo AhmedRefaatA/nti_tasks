@@ -53,7 +53,7 @@ $op = mysqli_query($connect, $sql);
                 <td><?php echo date("m/d/Y H:i", $data['end_date']);?></td>
                 <td>
                     <a href="delete.php?id= <?php echo $data['id']?>" class="btn btn-danger">Delete</a >
-                    <a href="" class="btn btn-primary">Edite</a >
+                    <a href="edite.php?id= <?php echo $data['id']?>" class="btn btn-primary">Edite</a >
                 </td>
                 </tr>
                 <?php } ?>
