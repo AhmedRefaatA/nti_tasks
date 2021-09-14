@@ -4,6 +4,10 @@
 
 
 
+require "db_connect.php";
+
+$sql = "select * from todos";
+$op = mysqli_query($connect, $sql);
 
 
 
@@ -24,25 +28,35 @@
 
         <table class="table table-hover">
                 <thead>
+                
                 <tr>
-                <th scope="col">#</th>
-                <th scope="col">id</th>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Start date</th>
-                <th scope="col">End date</th>
+                <th>#</th>
+                <th>id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Start date</th>
+                <th>End date</th>
+                <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                
+            <?php 
+                $i = 0;
+                while ($data = mysqli_fetch_assoc($op)) {
+            ?>
                 <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>Larry the Bird</td>
-                <td>Larry the Bird ddsdsdsdsds</td>
-                <td>Start date</td>
-                <td>End date</td>
+                <td><?php echo ++$i;?></td>
+                <td><?php echo $data['id'];?></td>
+                <td><?php echo $data['title'];?></td>
+                <td><?php echo $data['description'];?></td>
+                <td><?php echo date("m/d/Y H:i", $data['start_date']);?></td>
+                <td><?php echo date("m/d/Y H:i", $data['end_date']);?></td>
+                <td>
+                    <a href="" class="btn btn-danger">Delete</a >
+                    <a href="" class="btn btn-primary">Edite</a >
+                </td>
                 </tr>
+                <?php } ?>
             </tbody>
         </table>
     </body>
